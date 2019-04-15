@@ -10,9 +10,9 @@ biggest- the maximum value in the score matrix.
 
 function[x,y,operations,startingPointX,startingPointY,biggest] = optimalPathSW(matrix,s,s1,A,C,G,T,gap)
 maximum = max(matrix);
-biggest = max(1);
+biggest = maximum(1);
 for i = 2 : length(maximum)
-    if max(i) > maximum(i-1)
+    if maximum(i) > biggest
     biggest = maximum(i);
     end
 end
@@ -34,6 +34,10 @@ for c = 1 : length(x)
     e = y(c);
     numOfOp=0;
     while matrix(d,e) ~= 0
+        
+        val = [-100 -100 -100 -100];
+        numOfOp = numOfOp + 1;
+        cost = -100;
         if s(d) == s1(e)
             switch s(d)
             case 'A'
@@ -46,14 +50,9 @@ for c = 1 : length(x)
             value = T(1);
             end
         if ( matrix(d-1,e-1) + value ) == matrix(d,e)
-            numOfOp = numOfOp + 1;
-            d = d - 1;
-            e = e - 1;
-            operations(c,numOfOp) = ("match");
+            val(4) = matrix(d-1,e-1) + value;
         end
-        else
-            val = [-2 -2 -2];
-            numOfOp = numOfOp + 1;
+        end
             top = matrix(d-1,e);
             left = matrix(d,e-1);
             if matrix(d,e) == (top + gap)
@@ -89,7 +88,7 @@ for c = 1 : length(x)
             case 'T'
             cost = G(4);
             end
-            else %% T
+            elseif s(d)=='T'
             switch s1(e)
             case 'A'
             cost = T(2);
@@ -114,8 +113,12 @@ for c = 1 : length(x)
             d = d - 1;
             e = e - 1;
             operations(c,numOfOp) = ("substitiution");
+            elseif ind == 4
+            d = d - 1;
+            e = e - 1;
+            operations(c,numOfOp) = ("match");    
             end
-        end
+        
         if matrix(d,e) == 0
         startingPointX(c) = d;
         startingPointY(c) = e;

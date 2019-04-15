@@ -12,18 +12,20 @@ matrix = zeros(n,m);
 
 for a = 2 : n
     for b = 2 : m
+        match = -100;
+        value = -100;
         if s(a) == s1(b)
             switch s(a)
                 case 'A'
-                matrix(a,b) = matrix(a-1,b-1) + A(1);
+                match = matrix(a-1,b-1) + A(1);
                 case 'C'
-                matrix(a,b) = matrix(a-1,b-1) + C(1);
+                match = matrix(a-1,b-1) + C(1);
                 case 'G'
-                matrix(a,b) = matrix(a-1,b-1) + G(1);
+                match = matrix(a-1,b-1) + G(1);
                 case 'T'
-                matrix(a,b) = matrix(a-1,b-1) + T(1);
+                match = matrix(a-1,b-1) + T(1);
             end
-            else
+        end
                 top = matrix(a-1,b) + gap;
                 left = matrix(a,b-1) + gap ;
 
@@ -55,7 +57,7 @@ for a = 2 : n
                 case 'T'
                 value = G(4);
                 end
-            else %% T
+            elseif s(a) == 'T'
                 switch s1(b)
                 case 'A'
                 value = T(2);
@@ -66,17 +68,17 @@ for a = 2 : n
                 end
             end
             across = matrix(a-1,b-1) + value;
-            val = [across left top];
+            val = [match across left top];
             valMax = max(val);
             matrix(a,b) = valMax;
-        end
+       
     end
 end
 
-for a = 2 : n
-    for b = 2 : m
-        if matrix(a,b) <0
-        matrix(a,b) = 0;
+for g = 2 : n
+    for e = 2 : m
+        if matrix(g,e) < 0
+        matrix(g,e) = 0;
         end
     end
 end

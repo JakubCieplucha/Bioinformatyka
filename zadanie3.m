@@ -142,9 +142,9 @@ number = number + 1;
 check = checkSequence(s(i).sequence);
 check1 = checkSequence(s(j).sequence);   
 if check + check1 == 2
-sequence1 = insertBefore(s(i).sequence(1:10),1,' ');
-sequence2 = insertBefore(s1(i).sequence(1:10),1,' ');
-[A,C,G,T,equal]=readSubstitiutionMatrix('stronka');
+sequence1 = insertBefore(s(i).sequence,1,' ');
+sequence2 = insertBefore(s1(i).sequence,1,' ');
+[A,C,G,T,equal]=readSubstitiutionMatrix(p.Results.subMatrixFile);
 if equal == 1
 gap = p.Results.gap; 
 matrix = smithWatermanAlgorithm(sequence1,sequence2,A,C,G,T,gap);
@@ -172,6 +172,5 @@ else
 disp('No substitiution matrix file was given')   
 end
 end
-
 
 

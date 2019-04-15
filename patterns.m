@@ -21,9 +21,9 @@ for i = 1 : a
         patterns(i) =  patterns(i) + " ";
         gaps(i) = gaps(i) + 1;
         elseif operations(i,j) ==  "substitiution"
-        patterns(i) =  patterns(i) + "|";
+        patterns(i) =  patterns(i) + " ";
         elseif operations(i,j) == "match"
-        patterns(i) =  patterns(i) + "*" ;
+        patterns(i) =  patterns(i) + "|" ;
         identity(i) = identity(i) + 1;
         end
     end

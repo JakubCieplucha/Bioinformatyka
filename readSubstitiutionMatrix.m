@@ -39,6 +39,6 @@ if check==1
  G=[num(3,3),num(3,1), num(3,2), num(3,4)];
  T=[num(4,4),num(4,1), num(4,2), num(4,3)]; 
 else
-    disp("The substitiution matrix is not in the correct format");
+    disp('The substitiution matrix is not in the correct format');
 end
 end
