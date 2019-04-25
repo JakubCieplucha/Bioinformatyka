@@ -19,7 +19,7 @@ p.addParameter('input2','',@ischar)
 p.addParameter('mode','distance',@ischar)
 p.addParameter('match',0,@isnumeric)
 p.addParameter('mismatch',1,@isnumeric)
-p.addParameter('gap',1,@isnumeric)
+p.addParameter('gap',2,@isnumeric)
 parse(p,varargin{:})
 number=0;
 
@@ -147,9 +147,9 @@ if check + check1 == 2
 sequence1 = insertBefore(s(i).sequence,1,' ');
 sequence2 = insertBefore(s1(i).sequence,1,' ');
 if mode == "distance"
-[score,operations,matrix] = distance(sequence1,sequence2,p.Results.match,p.Results.mismatch,p.Results.gap);   
-else 
-[score,operations,matrix] = similarity(sequence1,sequence2,p.Results.match,p.Results.mismatch,p.Results.gap);      
+[score,operations,matrix] = scoreMatrix(sequence1,sequence2,p.Results.match,p.Results.mismatch,p.Results.gap,1);   
+elseif mode == "similarity"
+[score,operations,matrix] = scoreMatrix(sequence1,sequence2,p.Results.match,p.Results.mismatch,p.Results.gap,2);      
 end
 [seq,seq1,pattern,len,identity,gaps] = optimalPath(sequence1,sequence2,operations);
 id1 = s(i).identifier;
