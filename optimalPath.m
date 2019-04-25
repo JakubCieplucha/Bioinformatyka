@@ -15,14 +15,8 @@ m = length(sequence2);
 empty = '_';
 amount = length(operations);
 for i = 1 : amount
-    if n == m
-       switch operations(i)   
-            case "insertion"
-            sequence2(i) = empty;
-            case "deletion"
-            sequence1(i) = empty;
-       end
-   elseif i == 1 && operations(1) == "insertion"
+    
+   if i == 1 && operations(1) == "insertion"
          sequence1 = [empty sequence1(1:end)];
    elseif i == 1 &&  operations(1) == "deletion"
          sequence2 = [empty sequence2(1:end)];
