@@ -56,7 +56,7 @@ if ( ~isempty(p.Results.identifier1) ||  ~isempty(p.Results.filename1) ||  ~isem
   end
 end
 
-
+if number == 2 
 if ( ~isempty(p.Results.filename1) &&   ~isempty(p.Results.filename2))
     text=readFile(p.Results.filename1);
     text1=readFile(p.Results.filename2);
@@ -172,6 +172,9 @@ for i = 1 : first
             disp('At least one submission is not a complete genetic sequence');
         end
     end
+end
+else 
+    disp('Not enough inputs')
 end
 end
 
