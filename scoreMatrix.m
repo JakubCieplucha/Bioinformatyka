@@ -57,6 +57,10 @@ while   ((t~=0) & (y~=0))
             if matrix (t-1,y-1) + match  == matrix(t,y)
             val(4) = matrix(t-1,y-1);
             end
+        elseif s(t) ~= s1(y)
+            if across + mismatch == matrix(t,y)
+            val(1) = across;
+            end
         end
         number = number + 1;
         top = matrix(t-1,y);
@@ -68,9 +72,6 @@ while   ((t~=0) & (y~=0))
         end
         if left + gap == matrix(t,y)
             val(2) = left;
-        end
-        if across + mismatch == matrix(t,y)
-            val(1) = across;
         end
         if mode == 1
         [value,ind] = min(val);
