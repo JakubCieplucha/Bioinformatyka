@@ -10,29 +10,29 @@ where a match in both localy paired sequences, gaps- a matrix determinig
 how many gaps there where after the pairing, patterns- a matrix with all
 the patterns for each local pairing.
 %}
-function saveParametersSW (A,C,T,G,number,id1,id2,gap,score,lengths,identity,gaps,seq1,seq2,patterns)
+function saveParametersSW (numbers,order,number,id1,id2,gap,score,lengths,identity,gaps,seq1,seq2,patterns)
 
 n = length(identity);
 for i = 1 : n 
 disp("     " + i );    
 disp("# 1: " + id1);
 disp("# 2: " + id2);
-disp("# Match A: " + A(1));
-disp("# Match C: " + C(1));
-disp("# Match G: " + G(1));
-disp("# Match T: " + T(1));
-disp("# Mismatch A-C: " + A(2));
-disp("# Mismatch A-G: " + A(3));
-disp("# Mismatch A-T: " + A(4));
-disp("# Mismatch C-A: " + C(2));
-disp("# Mismatch C-G: " + C(3));
-disp("# Mismatch C-T: " + C(4));
-disp("# Mismatch G-A: " + G(2));
-disp("# Mismatch G-C: " + G(3));
-disp("# Mismatch G-T: " + G(4));
-disp("# Mismatch T-A: " + T(2));
-disp("# Mismatch T-C: " + T(3));
-disp("# Mismatch T-G: " + T(4));
+disp("# Match A: " + findValueSW(numbers,order,'A','A'));
+disp("# Match C: " + findValueSW(numbers,order,'C','C'));
+disp("# Match G: " + findValueSW(numbers,order,'G','G'));
+disp("# Match T: " + findValueSW(numbers,order,'T','T'));
+disp("# Mismatch A-C: " + findValueSW(numbers,order,'A','C'));
+disp("# Mismatch A-G: " + findValueSW(numbers,order,'A','G'));
+disp("# Mismatch A-T: " + findValueSW(numbers,order,'A','T'));
+disp("# Mismatch C-A: " + findValueSW(numbers,order,'C','A'));
+disp("# Mismatch C-G: " + findValueSW(numbers,order,'C','G'));
+disp("# Mismatch C-T: " + findValueSW(numbers,order,'C','T'));
+disp("# Mismatch G-A: " + findValueSW(numbers,order,'G','A'));
+disp("# Mismatch G-C: " + findValueSW(numbers,order,'G','C'));
+disp("# Mismatch G-T: " + findValueSW(numbers,order,'G','T'));
+disp("# Mismatch T-A: " + findValueSW(numbers,order,'T','A'));
+disp("# Mismatch T-C: " + findValueSW(numbers,order,'T','C'));
+disp("# Mismatch T-G: " + findValueSW(numbers,order,'T','G'));
 disp("# Gap: " + gap);
 disp("# Score: " + score );
 disp("# Length: " + lengths(i));
@@ -50,22 +50,22 @@ fileID = fopen (fileName, "at" );
 fprintf (fileID,"     " + i + "\n");    
 fprintf (fileID,"# 1: " + id1 + "\n");
 fprintf (fileID,"# 2: " + id2 + "\n");
-fprintf (fileID,"# Match A: " + A(1) + "\n");
-fprintf (fileID,"# Match C: " + C(1) + "\n");
-fprintf (fileID,"# Match G: " + G(1) + "\n");
-fprintf (fileID,"# Match T: " + T(1) + "\n");
-fprintf (fileID,"# Mismatch A-C: " + A(2) + "\n");
-fprintf (fileID,"# Mismatch A-G: " + A(3) + "\n");
-fprintf (fileID,"# Mismatch A-T: " + A(4) + "\n");
-fprintf (fileID,"# Mismatch C-A: " + C(2) + "\n");
-fprintf (fileID,"# Mismatch C-G: " + C(3) + "\n");
-fprintf (fileID,"# Mismatch C-T: " + C(4) + "\n");
-fprintf (fileID,"# Mismatch G-A: " + G(2) + "\n");
-fprintf (fileID,"# Mismatch G-C: " + G(3) + "\n");
-fprintf (fileID,"# Mismatch G-T: " + G(4) + "\n");
-fprintf (fileID,"# Mismatch T-A: " + T(2) + "\n");
-fprintf (fileID,"# Mismatch T-C: " + T(3) + "\n");
-fprintf (fileID,"# Mismatch T-G: " + T(4) + "\n");
+fprintf (fileID,"# Match A: " + findValueSW(numbers,order,'A','A') + "\n");
+fprintf (fileID,"# Match C: " + findValueSW(numbers,order,'C','C') + "\n");
+fprintf (fileID,"# Match G: " + findValueSW(numbers,order,'G','G') + "\n");
+fprintf (fileID,"# Match T: " + findValueSW(numbers,order,'T','T') + "\n");
+fprintf (fileID,"# Mismatch A-C: " + findValueSW(numbers,order,'A','C') + "\n");
+fprintf (fileID,"# Mismatch A-G: " + findValueSW(numbers,order,'A','G') + "\n");
+fprintf (fileID,"# Mismatch A-T: " + findValueSW(numbers,order,'A','T') + "\n");
+fprintf (fileID,"# Mismatch C-A: " + findValueSW(numbers,order,'C','A') + "\n");
+fprintf (fileID,"# Mismatch C-G: " + findValueSW(numbers,order,'C','G') + "\n");
+fprintf (fileID,"# Mismatch C-T: " + findValueSW(numbers,order,'C','T') + "\n");
+fprintf (fileID,"# Mismatch G-A: " + findValueSW(numbers,order,'G','A') + "\n");
+fprintf (fileID,"# Mismatch G-C: " + findValueSW(numbers,order,'G','C') + "\n");
+fprintf (fileID,"# Mismatch G-T: " + findValueSW(numbers,order,'G','T') + "\n");
+fprintf (fileID,"# Mismatch T-A: " + findValueSW(numbers,order,'T','A') + "\n");
+fprintf (fileID,"# Mismatch T-C: " + findValueSW(numbers,order,'T','C') + "\n");
+fprintf (fileID,"# Mismatch T-G: " + findValueSW(numbers,order,'T','G') + "\n");
 fprintf (fileID,"# Gap: " + gap + "\n");
 fprintf (fileID,"# Score: " + score + "\n");
 fprintf (fileID,"# Length: " + lengths(i) + "\n");

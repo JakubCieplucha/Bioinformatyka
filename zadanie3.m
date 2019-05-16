@@ -143,12 +143,12 @@ check = checkSequence(s(i).sequence);
 check1 = checkSequence(s(j).sequence);   
 if check + check1 == 2
 sequence1 = insertBefore(s(i).sequence,1,' ');
-sequence2 = insertBefore(s1(i).sequence,1,' ');
-[A,C,G,T,equal]=readSubstitiutionMatrix(p.Results.subMatrixFile);
+sequence2 = insertBefore(s1(j).sequence,1,' ');
+[numbers,order,equal]=readSubstitiutionMatrix(p.Results.subMatrixFile);
 if equal == 1
 gap = p.Results.gap; 
-matrix = smithWatermanAlgorithm(sequence1,sequence2,A,C,G,T,gap);
-[x,y,operations,sX,sY,score] = optimalPathSW(matrix,sequence1,sequence2,A,C,G,T,gap);
+matrix = smithWatermanAlgorithm(sequence1,sequence2,numbers,order,gap);
+[x,y,operations,sX,sY,score] = optimalPathSW(matrix,sequence1,sequence2,numbers,order,gap);
 if isstring(operations)
 [pattern1,gaps,identity] = patterns(operations);
 [sequence,sequence1,lengths] = changeSequences(sequence1,sequence2,operations,x,y,sX,sY);
@@ -156,7 +156,7 @@ id1 = s(i).identifier;
 id1 = strsplit((char(id1)),' ');
 id2 = s1(j).identifier;
 id2 = strsplit((char(id2)),' ');
-saveParametersSW(A,C,T,G,1,id1(1),id2(1),gap,score,lengths,identity,gaps,sequence,sequence1,pattern1)
+saveParametersSW(numbers,order,1,id1(1),id2(1),gap,score,lengths,identity,gaps,sequence,sequence1,pattern1)
 basedOnFASTA(sequence,sequence1,sX,sY,x,y,1);
 displaySW(matrix,operations,id1(1),id2(1),1,sX,sY);
 else 
