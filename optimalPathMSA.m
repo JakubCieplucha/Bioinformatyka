@@ -6,16 +6,16 @@ This function does a traceback of the alignment.
 d=n;
 e=m;
 numOfOp=0;
-while ((d~=0) && (e~=0))
-    numOfOp = numOfOp + 1;
+while (d ~=0) && (e ~=0)
+numOfOp = numOfOp + 1;
     val = [NaN NaN NaN NaN];
     cost=NaN;
     across = NaN;
     if d == 1
-        d = d - 1;
+        e = e - 1;
         operations(numOfOp) = ("insertion");
     elseif e == 1
-        e = e - 1;
+        d = d - 1;
         operations(numOfOp) = ("deletion");
     else
         if s(d) == s1(e)

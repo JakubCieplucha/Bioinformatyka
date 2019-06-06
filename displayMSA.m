@@ -1,11 +1,15 @@
-function [g]= displayMSA(altered,numberOfSeq,pattern,completeCost)
+function  displayMSA(altered,numberOfSeq,pattern,completeCost)
 %{
 This function displays and saves the results of the MSA.
+Input parameters: altered- the altered sequences, NumberOfSeq- amount of
+sequences, pattern- pattern of the alignment, completeCost- the complete
+cost of the alignment.
 %}
 len = length(altered(1).sequence);
-times = ceil(len/30);
+magic = 30 ;
+times = ceil(len/magic);
 a=1;
-left = (times * 30) - len ;
+left = (times * magic) - len ;
 pat = convertStringsToChars(pattern);
 fileName = ['ParametersMSA.fasta'];
 fileID = fopen (fileName, "at" );
@@ -13,7 +17,7 @@ fprintf(fileID,"Complete cost : " + completeCost + "\n");
 disp("Complete cost : " + completeCost);
 for i = 1 : times
     if i ~= 1
-        a = a + 30 ;
+        a = a + magic ;
     end
     for j = 1 : numberOfSeq
         id = altered(j).identifier;
@@ -34,9 +38,9 @@ for i = 1 : times
             disp(id(1) + space + " " + altered(j).sequence(a : a + left) + "  " + (a + left -number));
             fprintf(fileID,id(1) + space + " " + altered(j).sequence(a : a + left) + "  " + (a + left -number) + "\n");
         elseif times > 1
-            number = length(strfind(altered(j).sequence( a : 30 * i ),'_'));
-            disp(id(1) + space + " " + altered(j).sequence( a : 30 * i) + "  " + ( 30 * i - number));
-            fprintf (fileID,id(1) + space + " " + altered(j).sequence( a : 30 * i) + "  " + ( 30 * i - number) + "\n");
+            number = length(strfind(altered(j).sequence( a : magic * i ),'_'));
+            disp(id(1) + space + " " + altered(j).sequence( a : magic * i) + "  " + ( magic * i - number));
+            fprintf (fileID,id(1) + space + " " + altered(j).sequence( a : magic * i) + "  " + ( magic * i - number) + "\n");
         end
     end
     
@@ -47,8 +51,8 @@ for i = 1 : times
         disp( "           " + pat( a : a + left) );
         fprintf (fileID, "           " + pat( a : a + left) + "\n" );
     elseif times > 1
-        disp( "           " + pat( a : 30 * i) );
-        fprintf (fileID, "           " + pat( a : 30 * i) + "\n");
+        disp( "           " + pat( a : magic * i) );
+        fprintf (fileID, "           " + pat( a : magic * i) + "\n");
     end
 end
 fclose("all");

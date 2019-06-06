@@ -1,6 +1,10 @@
 function [pattern,x] = patternMSA(altered,numberOfSeq)
 %{
 This function creates a visual representation of the alignment.
+Input parameters: altered- the altered sequences, numberOfSeq- the amount
+of sequences.
+Output parameters: pattern- the pattern of matching all sequences, x- all
+neclueotides of every sequence placed in a matrix. 
 %}
 len = length(altered(1).sequence);
 for i = 1 : len

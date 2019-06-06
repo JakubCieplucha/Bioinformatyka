@@ -6,20 +6,10 @@ Output parameters: check- the end result of the evaluation.
 %}
 function [check]= checkSequence(s)
 n = numel(s);
+check = 1;
 for i = 1 : n
-    switch s(i)
-        case 'A'
-            check = 1;
-        case 'T'
-            check = 1;
-        case 'G'
-            check = 1;
-        case 'C'
-            check = 1;
-        otherwise
-            disp(i);
-            check = 0
-            return
+    if s(i) ~='A' && s(i) ~='C' && s(i) ~='G' && s(i) ~='T'
+        check = 0;
     end
 end
 end
